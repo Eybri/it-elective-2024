@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UBNHS_NEWS</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Carter+One&family=Changa+One:ital@0;1&family=Cinzel:wght@400..900&family=Exo+2:ital,wght@0,100..900;1,100..900&family=Indie+Flower&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Londrina+Sketch&family=Nanum+Myeongjo:wght@400;700;800&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Parkinsans:wght@300..800&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Rowdies:wght@300;400;700&family=Rozha+One&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">    <link rel="stylesheet" href="footernav.css">
+<style>
+    body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+#calendar {
+  width: 80%;
+  max-width: 600px;
+  margin: 20px auto;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+#calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #007BFF;
+  color: white;
+  padding: 10px;
+}
+
+#calendar-header button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
+#calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  padding: 10px;
+}
+
+.day.has-events {
+  background-color: #FFEFD5; /* Light orange */
+  position: relative;
+}
+
+.day.has-events::after {
+  content: "★"; /* A star to indicate an event */
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 12px;
+  color: #FFA500; /* Orange */
+}
+
+.day {
+  width: 100%;
+  padding: 15px;
+  text-align: center;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.day:hover {
+  background-color: #e0e0e0;
+}
+
+.day.selected {
+  background-color: #007BFF;
+  color: white;
+}
+
+#event-list {
+  margin-top: 20px;
+}
+
+#events {
+  list-style: none;
+  padding: 0;
+}
+
+</style>
+</head>
+<body>
+<!-- Header Section -->
+<div class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid p-2">
+        <img src="home/logo 2.png" height="65" alt="Logo">  
+        <a class="navbar-brand headss" href="#">
+        UPPER BICUTAN NATIONAL HIGHSCHOOL
+        </a>
+        <div class="ms-auto">
+
+        </div>
+    </div>
+</div>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg sticky-top"> 
+<div class="container-fluid">
+    <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+        <a class="nav-link single me-4" aria-current="page" href="index.html">Home</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link single me-4 " href="profile.html">Profile</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link single me-4" href="facilities.html">Facilities</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link single me-4" href="news.html">News</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link single me-4" href="contacts.html">Contact</a>
+        </li>
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle me-4" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            More
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="faculty.html">Faculty</a></li>
+            <li><a class="dropdown-item" href="admission.html">admission</a></li>
+
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#events">Events</a></li>
+        </ul>
+        </li>
+        <!-- <li class="nav-item">
+        <a class="nav-link active" href="rules.html">Rules & Regulations</a>
+        </li> -->
+    </ul>
+    </div>
+</div>
+</nav>
+<!-- Announcement Bar -->
+<div class="announcement-bar">
+<div class="d-flex align-items-center">
+    <span class="announcement-label">Announcements</span>
+    <span class="announcement-text">Jobs@UBNHS: Counseling and Career Center</span>
+</div>
+<div>
+    <span class="carousel-controls me-2">&lt;</span>
+    <span class="carousel-controls">&gt;</span>
+</div>
+</div>
+
+<!-- Search Bar -->
+<div class="search-bar">
+    <div class="input-group ">
+        <input type="text" class="form-control search-input" placeholder="Enter Search Keyword" aria-label="Search">
+        <button class="btn search-button">SEARCH</button>
+    </div>
+</div>   
+<main>
+    <!-- Hero Section -->
+    <section class="hero-section py-5 text-center text-white" style="background: linear-gradient(to right, #4c4c4c, #2c3e50);">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Upper Bicutan National High School News</h1>
+            <p class="lead">Stay updated with the latest happenings and achievements of our school community!</p>
+        </div>
+    </section>
+
+    <!-- Featured News Section -->
+    <section class="featured-news py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <img src="news/n1.jfif" height="300" class=" rounded shadow" alt="Featured News">
+                </div>
+                <div class="col-md-6">
+                    <h2 class="fw-bold">UBNHS Leads Brigada Eskwela 2024</h2>
+                    <p class="text-muted">November 20, 2024</p>
+                    <p>
+                        Upper Bicutan National High School successfully held its Brigada Eskwela, rallying the community to prepare the campus for another academic year. The program featured environmental sustainability efforts like tree planting and recycling drives.
+                    </p>
+                    <a href="#" class="btn btn-primary">Read More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest News Section -->
+    <section class="latest-news py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-4">Latest News</h2>
+            <div class="row gy-4">
+                <!-- News Card 1 -->
+                <div class="col-md-4">
+                    <div class="card shadow-sm">
+                        <img src="news/n2.jfif" height="200" class="card-img-top" alt="News Image">
+                        <div class="card-body">
+                            <h5 class="card-title">Celebrating National Reading Month</h5>
+                            <p class="card-text">
+                                Students engaged in storytelling sessions and a "Read-a-thon" competition to promote literacy and foster a love for reading.
+                            </p>
+                            <a href="#" class="btn btn-outline-primary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- News Card 2 -->
+                <div class="col-md-4">
+                    <div class="card shadow-sm">
+                        <img src="news/n3.jfif" height="200" class="card-img-top" alt="News Image">
+                        <div class="card-body">
+                            <h5 class="card-title">Teachers' Day Celebration</h5>
+                            <p class="card-text">
+                                A heartfelt event was organized by students to appreciate the hard work and dedication of the faculty.
+                            </p>
+                            <a href="#" class="btn btn-outline-primary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- News Card 3 -->
+                <div class="col-md-4">
+                    <div class="card shadow-sm">
+                        <img src="news/n4.jfif" height="200" class="card-img-top" alt="News Image">
+                        <div class="card-body">
+                            <h5 class="card-title">Sports Fest 2024</h5>
+                            <p class="card-text">
+                                An exciting week of sports and games as students showcase their athleticism and teamwork.
+                            </p>
+                            <a href="#" class="btn btn-outline-primary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="statistics-section py-5 text-center text-white" style="background: #2c3e50;">
+        <div class="container">
+            <h2 class="fw-bold">UBNHS By The Numbers</h2>
+            <div class="row mt-4">
+                <div class="col-md-3">
+                    <h3 class="display-4 fw-bold">50+</h3>
+                    <p>Facilities</p>
+                </div>
+                <div class="col-md-3">
+                    <h3 class="display-4 fw-bold">200+</h3>
+                    <p>Dedicated Teachers</p>
+                </div>
+                <div class="col-md-3">
+                    <h3 class="display-4 fw-bold">50+</h3>
+                    <p>Clubs and Organizations</p>
+                </div>
+                <div class="col-md-3">
+                    <h3 class="display-4 fw-bold">10+</h3>
+                    <p>National Awards</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upcoming Events Section -->
+    <section class="upcoming-events py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Upcoming Events</h2>
+            <div class="row gy-4">
+                <div class="col-md-6">
+                    <div class="event p-4 shadow rounded bg-white">
+                        <h4>Science Fair 2024</h4>
+                        <p class="text-muted">December 5, 2024</p>
+                        <p>Explore the world of science through student projects, experiments, and guest speakers.</p>
+                        <a href="#" class="btn btn-outline-primary">View Details</a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="event p-4 shadow rounded bg-white">
+                        <h4>Christmas Program</h4>
+                        <p class="text-muted">December 15, 2024</p>
+                        <p>A festive celebration featuring performances, gift-giving, and community activities.</p>
+                        <a href="#" class="btn btn-outline-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<h1>School Events Calendar</h1>
+<div id="calendar">
+  <div id="calendar-header">
+    <button id="prev" onclick="changeMonth(-1)">❮</button>
+    <span id="month-year"></span>
+    <button id="next" onclick="changeMonth(1)">❯</button>
+  </div>
+  <div id="calendar-days"></div>
+</div>
+<div id="event-list">
+  <h2>Events on <span id="selected-date"></span></h2>
+  <ul id="events"></ul>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <p>&copy; 2024 UBNHS. All rights reserved.</p>
+        <p>Follow us on <a href="#">Facebook</a>, <a href="#">Twitter</a>, and <a href="#">Instagram</a>.</p>
+    </div>
+</footer>
+
+<script>
+    const events = {
+  "2024-11-01": ["Math Olympiad", "Parent-Teacher Meeting"],
+  "2024-11-15": ["Science Fair"],
+  "2024-11-20": ["Field Trip to Museum"],
+  "2024-11-26": ["Annual Sports Day"]
+};
+
+let currentMonth = new Date().getMonth();
+let currentYear = new Date().getFullYear();
+
+function loadCalendar() {
+  const calendarDays = document.getElementById("calendar-days");
+  const monthYear = document.getElementById("month-year");
+  const date = new Date(currentYear, currentMonth, 1);
+
+  const monthNames = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+
+  const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+  const firstDay = date.getDay();
+
+  monthYear.textContent = `${monthNames[currentMonth]} ${currentYear}`;
+  calendarDays.innerHTML = "";
+
+  // Fill in blank days before the first day of the month
+  for (let i = 0; i < firstDay; i++) {
+    calendarDays.innerHTML += `<div></div>`;
+  }
+
+  // Fill in days of the month
+  for (let day = 1; day <= daysInMonth; day++) {
+    const fullDate = `${currentYear}-${String(currentMonth + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+    const dayDiv = document.createElement("div");
+    dayDiv.classList.add("day");
+    dayDiv.textContent = day;
+
+    // Highlight days with events
+    if (events[fullDate]) {
+      dayDiv.classList.add("has-events");
+    }
+
+    dayDiv.onclick = () => showEvents(fullDate);
+    calendarDays.appendChild(dayDiv);
+  }
+}
+
+function showEvents(date) {
+  const eventList = document.getElementById("events");
+  const selectedDate = document.getElementById("selected-date");
+  selectedDate.textContent = date;
+
+  eventList.innerHTML = "";
+
+  if (events[date]) {
+    events[date].forEach(event => {
+      const li = document.createElement("li");
+      li.textContent = event;
+      eventList.appendChild(li);
+    });
+  } else {
+    eventList.innerHTML = "<li>No events on this day.</li>";
+  }
+
+  document.querySelectorAll(".day").forEach(day => day.classList.remove("selected"));
+  document.querySelector(`.day:nth-child(${parseInt(date.split("-")[2]) + new Date(date.split("-")[0], date.split("-")[1] - 1, 1).getDay()})`).classList.add("selected");
+}
+
+function changeMonth(offset) {
+  currentMonth += offset;
+
+  if (currentMonth < 0) {
+    currentMonth = 11;
+    currentYear--;
+  } else if (currentMonth > 11) {
+    currentMonth = 0;
+    currentYear++;
+  }
+
+  loadCalendar();
+}
+
+document.addEventListener("DOMContentLoaded", loadCalendar);
+</script>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</html>
